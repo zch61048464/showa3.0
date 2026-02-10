@@ -1,0 +1,1396 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>製品紹介 | 神奈川昭和製薬株式会社</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* ===== Warm ivory clinic tone ===== */
+      --bg: #f7f3ea;              /* warm ivory */
+      --bg2:#fbf8f1;              /* 鏇存祬鐨勬殩鐧藉眰 */
+      --surface: rgba(255,255,255,.74);
+      --surface2: rgba(255,255,255,.60);
+
+      --text:#141414;
+      --muted: rgba(20,20,20,.64);
+      --hair: rgba(20,20,20,.10);
+      --hair2: rgba(20,20,20,.06);
+
+      --champagne:#cdbb93;        /* 绫虫潖閲?*/
+      --champagne2:#e6dbbd;
+
+      --ease:cubic-bezier(.16,1,.3,1);
+      --container: 1400px;
+      --pad: clamp(16px, 4vw, 56px);
+      --header-h: 88px;
+      --nav: 0;                   /* header frosting 0..1 */
+
+      /* custom scrollbar show/hide (0..1) */
+      --sbar: 0;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Noto Serif JP', serif;
+      background: radial-gradient(1200px 720px at 20% 10%, rgba(205,187,147,.10), transparent 60%),
+                  radial-gradient(1100px 700px at 80% 30%, rgba(255,255,255,.55), transparent 62%),
+                  linear-gradient(180deg, var(--bg2), var(--bg));
+      color: var(--text);
+      line-height: 1.88;
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+
+    /* ===== Hide native scrollbar ===== */
+    html{ scrollbar-width: none; }
+    body::-webkit-scrollbar{ width: 0; height: 0; }
+
+    .container{max-width:var(--container);margin:0 auto;padding:0 var(--pad)}
+    section{padding: clamp(92px, 9vw, 160px) 0}
+
+    /* ========= Header: frosted warm white ========= */
+    header{
+      position:fixed; inset:0 0 auto 0;
+      height: var(--header-h);
+      display:flex; align-items:center;
+      z-index: 1000;
+    }
+    header::before{
+      content:""; position:absolute; inset:0;
+      background: rgba(247,243,234, calc(var(--nav) * .88));
+      backdrop-filter: blur(calc(var(--nav) * 18px));
+      -webkit-backdrop-filter: blur(calc(var(--nav) * 18px));
+      border-bottom: 1px solid rgba(20,20,20, calc(var(--nav) * .08));
+      box-shadow: 0 14px 44px rgba(0,0,0, calc(var(--nav) * .05));
+      pointer-events:none;
+    }
+    nav{
+      position:relative; z-index:1;
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 18px;
+    }
+
+    /* ========= Logo (more premium) ========= */
+    .logo{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      min-width: 280px;
+    }
+    .logo-main{
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: .34em;           /* 鏇撮珮绾э細鏇村瀛楄窛 */
+      text-transform: uppercase;
+      color: rgba(20,20,20, calc(.30 + var(--nav) * .70));
+    }
+    .logo-sub{
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-size: .70rem;
+      letter-spacing: .22em;
+      color: rgba(20,20,20, calc(.22 + var(--nav) * .68));
+      opacity:.92;
+    }
+
+    .nav-links{display:flex;align-items:center;gap: clamp(18px, 2.6vw, 44px);list-style:none}
+    .nav-links a{
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-size:.84rem;
+      letter-spacing:.14em;
+      padding: 10px 2px;
+      position:relative;
+      color: rgba(20,20,20, calc(.26 + var(--nav) * .74));
+    }
+    .nav-links a::after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:6px;
+      height:1px;
+      background: rgba(205,187,147, calc(.20 + var(--nav) * .80));
+      transform: scaleX(0);
+      transform-origin:left;
+      transition: transform 560ms var(--ease);
+    }
+    .nav-links a:hover::after, .nav-links a:focus-visible::after{ transform: scaleX(1); }
+    .nav-links a:focus-visible{ outline: 3px solid rgba(205,187,147,.30); outline-offset: 6px; border-radius: 10px; }
+
+    .menu-btn{
+      display:none;
+      width:46px;height:46px;border-radius:14px;
+      border:1px solid rgba(20,20,20,.12);
+      background: rgba(255,255,255,.40);
+      cursor:pointer;
+      color: rgba(20,20,20,.84);
+      transition: transform 260ms var(--ease), background 260ms var(--ease);
+    }
+    .menu-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.55); }
+    .menu-btn .bar{display:block;width:18px;height:2px;background:currentColor;margin:4px auto;border-radius:2px}
+
+    .mobile{
+      position:fixed;
+      top: calc(var(--header-h) - 8px);
+      left: 12px; right: 12px;
+      background: rgba(247,243,234,.96);
+      border: 1px solid rgba(20,20,20,.10);
+      border-radius: 18px;
+      box-shadow: 0 22px 70px rgba(0,0,0,.12);
+      padding: 10px;
+      transform: translateY(-8px);
+      opacity:0;
+      pointer-events:none;
+      transition: 520ms var(--ease);
+      z-index:1200;
+    }
+    .mobile.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    .mobile a{
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 14px 12px; border-radius:14px;
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-weight: 700; letter-spacing: .08em;
+      color: #111;
+    }
+    .mobile a:hover{ background: rgba(20,20,20,.04); }
+    .mobile a span{ opacity:.55; font-weight:600; }
+
+    /* ========= Micro particles ========= */
+    #dust{
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      opacity: .32;           /* 鏇撮殣绾?*/
+      mix-blend-mode: screen;
+    }
+
+    /* ========= Invisible full-height scrollbar (premium) ========= */
+    .cscroll{
+      position: fixed;
+      top: 0; right: 0;
+      height: 100vh;
+      width: 26px;                /* 璐┛灞忓箷鐨勪氦浜掑尯鍩熸洿瀹?*/
+      z-index: 2200;
+      pointer-events: auto;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cscroll .track{
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background: transparent;
+    }
+    /* ultra subtle hairline */
+    .cscroll .track::before{
+      content:"";
+      position:absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 1px;
+      transform: translateX(-50%);
+      background: rgba(20,20,20,.10);
+      opacity: calc(.06 + var(--sbar) * .30); /* 榛樿鍑犱箮鐪嬩笉瑙?*/
+      transition: opacity 520ms var(--ease);
+    }
+
+    .cscroll .thumb{
+      position:absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 9px;
+      height: 64px;
+      border-radius: 999px;
+      background: linear-gradient(180deg,
+        rgba(205,187,147, calc(.08 + var(--sbar) * .55)),
+        rgba(205,187,147, calc(.04 + var(--sbar) * .35))
+      );
+      box-shadow:
+        0 18px 44px rgba(0,0,0, calc(.02 + var(--sbar) * .10)),
+        inset 0 0 0 1px rgba(255,255,255, calc(.10 + var(--sbar) * .60));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      cursor: grab;
+      opacity: calc(.06 + var(--sbar) * .88);   /* 榛樿杩戜箮闅愬舰 */
+      transition: opacity 520ms var(--ease), box-shadow 520ms var(--ease), background 520ms var(--ease);
+    }
+    .cscroll .thumb:active{ cursor: grabbing; }
+
+    /* hover makes it appear (still elegant) */
+    .cscroll:hover{
+      --sbar: 1;
+    }
+
+    /* ========= HERO (warm silk light, NO zoom) ========= */
+    .hero{
+      position:relative;
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding-top: var(--header-h);
+      background: transparent;
+    }
+
+    /* warm "silk" layers */
+    .silk{
+      position:absolute; inset:-22%;
+      filter: blur(30px);
+      transform: translate3d(0,0,0);
+      will-change: transform, opacity;
+      z-index: 1;
+      opacity: .70;
+      pointer-events:none;
+    }
+    .silk.s1{
+      background:
+        radial-gradient(900px 640px at 22% 30%, rgba(205,187,147,.22), transparent 62%),
+        conic-gradient(from 180deg at 50% 50%,
+          rgba(255,255,255,.18),
+          rgba(205,187,147,.10),
+          rgba(255,255,255,0),
+          rgba(255,255,255,.14)
+        );
+      animation: silkMove1 18s var(--ease) infinite alternate;
+      opacity: .70;
+    }
+    .silk.s2{
+      background:
+        radial-gradient(900px 680px at 72% 52%, rgba(255,255,255,.34), transparent 64%),
+        conic-gradient(from 30deg at 60% 40%,
+          rgba(205,187,147,.10),
+          rgba(255,255,255,.18),
+          rgba(255,255,255,0),
+          rgba(205,187,147,.08)
+        );
+      animation: silkMove2 22s var(--ease) infinite alternate;
+      opacity: .58;
+    }
+    .silk.s3{
+      background:
+        radial-gradient(1100px 740px at 48% 62%, rgba(205,187,147,.12), transparent 66%),
+        radial-gradient(980px 740px at 70% 34%, rgba(255,255,255,.22), transparent 64%);
+      animation: silkMove3 26s var(--ease) infinite alternate;
+      opacity: .48;
+    }
+    @keyframes silkMove1{
+      from{ transform: translate(-4%, -3%) rotate(-4deg) scale(1.02); }
+      to{   transform: translate( 6%,  4%) rotate( 6deg) scale(1.05); }
+    }
+    @keyframes silkMove2{
+      from{ transform: translate( 6%, -2%) rotate( 3deg) scale(1.03); }
+      to{   transform: translate(-5%,  5%) rotate(-6deg) scale(1.06); }
+    }
+    @keyframes silkMove3{
+      from{ transform: translate(-2%,  5%) rotate( 2deg) scale(1.02); }
+      to{   transform: translate( 4%, -4%) rotate(-3deg) scale(1.05); }
+    }
+
+    /* subtle grain / vignette */
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 560px at 50% 30%, rgba(255,255,255,.55), rgba(247,243,234,.10) 70%),
+        linear-gradient(180deg, rgba(247,243,234,.45), rgba(247,243,234,1));
+      z-index: 2;
+      pointer-events:none;
+      opacity: .95;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index: 10;
+      text-align:center;
+      padding: 0 var(--pad);
+      max-width: 980px;
+      transform: translateY(-8px);
+    }
+
+    /* ===== premium title system ===== */
+    .hero-brand{
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-size: .74rem;
+      letter-spacing: .46em;
+      text-transform: uppercase;
+      color: rgba(20,20,20,.64);
+      display:inline-flex;
+      align-items:center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .hero-brand::before,.hero-brand::after{
+      content:"";
+      width: 42px; height: 1px;
+      background: linear-gradient(90deg, rgba(205,187,147,.92), rgba(20,20,20,.10));
+      opacity: .92;
+    }
+
+    .hero-h1{
+      font-size: clamp(2.1rem, 4.2vw, 4.05rem);
+      letter-spacing: clamp(.12em, .65vw, .36em); /* 鏇撮珮绾э細閫傚害鎷夊紑 */
+      line-height: 1.14;
+      color: rgba(20,20,20,.92);
+    }
+
+    .hero-sub{
+      margin-top: 16px;
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: rgba(20,20,20,.58);
+      letter-spacing: .12em;
+      font-size: clamp(.98rem, .95vw + .7rem, 1.18rem);
+    }
+
+    .hero-actions{
+      margin-top: 34px;
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap: 10px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-weight: 700;
+      letter-spacing: .12em;
+      transition: transform 260ms var(--ease), box-shadow 260ms var(--ease), background 260ms var(--ease), border-color 260ms var(--ease);
+      user-select:none;
+    }
+    .btn.primary{
+      color:#111;
+      background: linear-gradient(135deg, rgba(230,219,189,1), rgba(205,187,147,1));
+      box-shadow: 0 18px 60px rgba(205,187,147,.18);
+      border: 1px solid rgba(205,187,147,.26);
+    }
+    .btn.primary:hover{ transform: translateY(-2px); box-shadow: 0 24px 80px rgba(205,187,147,.24); }
+    .btn.ghost{
+      color:#111;
+      background: rgba(255,255,255,.46);
+      border: 1px solid rgba(20,20,20,.10);
+      box-shadow: 0 18px 60px rgba(0,0,0,.05);
+    }
+    .btn.ghost:hover{ transform: translateY(-2px); background: rgba(255,255,255,.62); }
+
+    .scroll-wrap{
+      position:absolute;
+      left:50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      z-index: 10;
+      width: min(820px, 92vw);
+      text-align:center;
+      pointer-events:none;
+    }
+    .scrollhint{
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      letter-spacing: .28em;
+      font-size: .74rem;
+      color: rgba(20,20,20,.50);
+      user-select:none;
+    }
+    .scrollhint::after{
+      content:"";
+      display:block;
+      width:1px;height:34px;
+      margin: 10px auto 0;
+      background: rgba(205,187,147,.85);
+      transform-origin: top;
+      animation: lineDown 1.8s infinite var(--ease);
+      opacity: .9;
+    }
+    @keyframes lineDown{
+      0%{ transform: scaleY(.2); opacity:.15; }
+      40%{ transform: scaleY(1); opacity:1; }
+      100%{ transform: scaleY(.2); opacity:.15; }
+    }
+
+    .ticker{
+      margin: 14px auto 0;
+      overflow:hidden;
+      border-top: 1px solid rgba(20,20,20,.08);
+      border-bottom: 1px solid rgba(20,20,20,.06);
+      background: rgba(255,255,255,.34);
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 22px 70px rgba(0,0,0,.06);
+    }
+    .ticker .row{
+      display:flex;
+      gap: 44px;
+      white-space: nowrap;
+      padding: 10px 18px;
+      will-change: transform;
+      animation: tickerMove 18s linear infinite;
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      letter-spacing: .26em;
+      font-size: .72rem;
+      color: rgba(20,20,20,.52);
+      text-transform: uppercase;
+    }
+    .ticker .dot{
+      display:inline-block;
+      width: 6px; height: 6px;
+      border-radius: 999px;
+      background: rgba(205,187,147,.70);
+      transform: translateY(-1px);
+      opacity: .9;
+    }
+    @keyframes tickerMove{
+      from{ transform: translateX(0); }
+      to{ transform: translateX(-50%); }
+    }
+
+    /* ========= Sections ========= */
+    .section-label{margin-bottom: 10px}
+
+    .section-title{
+      color: rgba(20,20,20,.92);
+    }
+
+    /* Philosophy */
+    .philosophy-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(18px, 4vw, 64px);
+      align-items:center;
+      margin-top: 56px;
+    }
+    .philosophy-text h3{
+      font-size: clamp(1.35rem, 1.4vw + 1.05rem, 1.95rem);
+      margin-bottom: 18px;
+      line-height: 1.48;
+      border-left: 2px solid rgba(205,187,147,.95);
+      padding-left: 18px;
+      color: rgba(20,20,20,.90);
+    }
+    .philosophy-text p{ color: rgba(20,20,20,.72); font-size: 1.05rem; }
+    .philosophy-image{
+      border-radius: 2px;
+      overflow:hidden;
+      box-shadow: 0 30px 100px rgba(0,0,0,.08);
+      background: rgba(255,255,255,.42);
+    }
+    .philosophy-image img{
+      width:100%;
+      height: 520px;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 900ms var(--ease);
+      filter: saturate(1.02) contrast(1.02);
+    }
+    .philosophy-image:hover img{ transform: scale(1.06); }
+
+    /* Products */
+    .products-full-width{
+      background: linear-gradient(180deg, rgba(255,255,255,.35) 0%, rgba(247,243,234,1) 100%);
+      max-width: 100%;
+      padding: clamp(92px, 9vw, 160px) 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .products-full-width::before{
+      content:"";
+      position:absolute; inset:-20%;
+      background:
+        radial-gradient(900px 600px at 25% 25%, rgba(205,187,147,.12), transparent 60%),
+        radial-gradient(900px 600px at 80% 65%, rgba(20,20,20,.05), transparent 60%);
+      filter: blur(30px);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .products-full-width .container{ position:relative; z-index:1; }
+
+    .product-strip{
+      display:flex;
+      flex-direction:column;
+      gap: 14vh;
+      margin-top: 60px;
+      position:relative;
+      z-index:1;
+    }
+
+    .product-item{
+      display:flex;
+      align-items: stretch;
+      width:100%;
+      background: var(--surface);
+      border: 1px solid var(--hair2);
+      box-shadow: 0 30px 110px rgba(0,0,0,.06);
+      overflow:hidden;
+      transform: translateZ(0);
+      border-radius: 2px;
+    }
+    .product-item:nth-child(even){ flex-direction: row-reverse; }
+
+    .product-image-box{
+      flex: 1.25;
+      min-height: clamp(420px, 62vh, 720px);
+      background: #e9e4d9;
+      overflow:hidden;
+      position: relative;
+    }
+    .product-image-box img{
+      width:100%; height:100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 1200ms var(--ease);
+      filter: saturate(1.02) contrast(1.02);
+    }
+    .product-item:hover .product-image-box img{ transform: scale(1.06); }
+
+    .product-image-box::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(800px 420px at 30% 25%, rgba(205,187,147,.16), transparent 55%),
+        linear-gradient(180deg, rgba(20,20,20,0) 55%, rgba(20,20,20,.18) 100%);
+      opacity:.78;
+      pointer-events:none;
+    }
+
+    .product-info-box{
+      flex: 1;
+      padding: clamp(26px, 3.2vw, 56px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap: 12px;
+    }
+    .product-cat{
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: rgba(205,187,147,.95);
+      font-size: .82rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+    .product-name{
+      font-size: clamp(1.5rem, 1.6vw + 1.05rem, 2.25rem);
+      letter-spacing: .08em;
+      line-height: 1.18;
+      color: rgba(20,20,20,.92);
+    }
+    .product-desc{
+      font-size: 1.05rem;
+      color: rgba(20,20,20,.62);
+      max-width: 56ch;
+      margin-top: 6px;
+    }
+    .product-cta{
+      margin-top: 10px;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      width: fit-content;
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .80rem;
+      color: rgba(20,20,20,.86);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(205,187,147,.92);
+      transition: transform 260ms var(--ease), opacity 260ms var(--ease);
+      opacity:.92;
+    }
+    .product-cta:hover{ transform: translateX(2px); opacity:1; }
+
+    .product-filters{
+      margin-top: 36px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+    }
+    .filter-btn{
+      border: 1px solid rgba(20,20,20,.12);
+      background: rgba(255,255,255,.55);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      letter-spacing:.12em;
+      font-size:.72rem;
+      text-transform: uppercase;
+      color: rgba(20,20,20,.72);
+      cursor: pointer;
+      transition: all 260ms var(--ease);
+    }
+    .filter-btn:hover{ background: rgba(255,255,255,.72); }
+    .filter-btn.active{
+      color: rgba(20,20,20,.92);
+      border-color: rgba(205,187,147,.85);
+      box-shadow: 0 10px 28px rgba(205,187,147,.18);
+    }
+    .product-item.is-hidden{ display:none; }
+
+    .product-detail-modal{
+      position: fixed;
+      inset: 0;
+      z-index: 2500;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 260ms var(--ease);
+      padding: 20px;
+    }
+    .product-detail-modal.open{
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .product-detail-backdrop{
+      position:absolute;
+      inset:0;
+      background: rgba(20,20,20,.36);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .product-detail-panel{
+      position: relative;
+      z-index: 1;
+      width: min(920px, 94vw);
+      max-height: 88vh;
+      overflow: auto;
+      border-radius: 18px;
+      border: 1px solid rgba(20,20,20,.10);
+      background: rgba(247,243,234,.94);
+      box-shadow: 0 30px 90px rgba(0,0,0,.22);
+      padding: clamp(18px, 2.8vw, 30px);
+      display:grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(16px, 2.4vw, 26px);
+    }
+    .product-detail-image{
+      border-radius: 14px;
+      overflow:hidden;
+      background:#e9e4d9;
+      min-height: 280px;
+    }
+    .product-detail-image img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+    }
+    .product-detail-close{
+      position:absolute;
+      top: 10px;
+      right: 10px;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(20,20,20,.14);
+      background: rgba(255,255,255,.64);
+      color: rgba(20,20,20,.84);
+      cursor:pointer;
+      font-size: 20px;
+      line-height:1;
+    }
+    .product-detail-meta h3{
+      font-size: clamp(1.35rem, 2vw, 2rem);
+      letter-spacing: .06em;
+      color: rgba(20,20,20,.92);
+    }
+    .product-detail-price{
+      margin-top: 8px;
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: rgba(20,20,20,.68);
+      letter-spacing:.08em;
+      font-size:.92rem;
+    }
+    .product-detail-copy{
+      margin-top: 14px;
+      color: rgba(20,20,20,.72);
+      line-height: 1.8;
+    }
+    .product-detail-list{
+      margin-top: 14px;
+      padding-left: 18px;
+      color: rgba(20,20,20,.72);
+      display:grid;
+      gap:6px;
+    }
+
+    /* Location */
+    .location{
+      background: rgba(255,255,255,.34);
+      border-top: 1px solid rgba(20,20,20,.06);
+      border-bottom: 1px solid rgba(20,20,20,.06);
+    }
+    .landmark-grid{
+      display:grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: clamp(18px, 4vw, 64px);
+      align-items:center;
+      margin-top: 54px;
+    }
+    .landmark-visual{
+      position:relative;
+      height: 600px;
+      overflow:hidden;
+      border-radius: 2px;
+      box-shadow: 0 28px 90px rgba(0,0,0,.10);
+      background: rgba(255,255,255,.40);
+    }
+    .landmark-visual img{
+      width:100%; height:100%; object-fit:cover;
+      filter: grayscale(.08) contrast(1.05);
+      transform: scale(1.02);
+      transition: transform 900ms var(--ease);
+    }
+    .landmark-visual:hover img{ transform: scale(1.06); }
+
+    .hq-badge{
+      position:absolute;
+      right: 18px;
+      bottom: 18px;
+      background: rgba(247,243,234,.92);
+      color: #111;
+      padding: 18px 18px;
+      border-radius: 14px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.12);
+      max-width: 72%;
+      border: 1px solid rgba(20,20,20,.08);
+    }
+    .hq-badge p{
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-size:.72rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      opacity:.72;
+    }
+    .hq-badge h4{ font-size: 1.12rem; margin-top: 6px; letter-spacing:.06em; }
+
+    .location-card{
+      background: rgba(255,255,255,.56);
+      border: 1px solid rgba(20,20,20,.08);
+      border-radius: 18px;
+      padding: clamp(18px, 2.4vw, 34px);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 24px 90px rgba(0,0,0,.08);
+    }
+    .location-card p{ color: rgba(20,20,20,.74); }
+    .address{
+      margin-top: 22px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(20,20,20,.10);
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-size: .88rem;
+      letter-spacing: .06em;
+      opacity: .78;
+      line-height: 1.7;
+      color: rgba(20,20,20,.70);
+    }
+
+    /* Footer */
+    footer{
+      padding: 72px 0;
+      background: rgba(255,255,255,.36);
+      border-top: 1px solid rgba(20,20,20,.06);
+      text-align:center;
+    }
+    footer .b{
+      letter-spacing:.34em;
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-weight: 700;
+      color: rgba(20,20,20,.86);
+      text-transform: uppercase;
+      font-size: .92rem;
+    }
+    footer .c{
+      margin-top:12px;
+      opacity:.62;
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-size:.78rem;
+      letter-spacing:.10em;
+      color: rgba(20,20,20,.68);
+    }
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(28px);transition: opacity 900ms var(--ease), transform 900ms var(--ease)}
+    .reveal.on{opacity:1;transform:translateY(0)}
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *{animation:none!important;transition:none!important}
+      .reveal{opacity:1;transform:none}
+      #dust{display:none}
+      .cscroll{display:none}
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      :root{ --header-h: 78px; }
+      .nav-links{display:none}
+      .menu-btn{display:inline-block}
+      .philosophy-grid{grid-template-columns:1fr}
+      .philosophy-image img{height: 420px}
+
+      .product-item, .product-item:nth-child(even){ flex-direction: column; }
+      .product-image-box{ min-height: 46vh; }
+      .product-detail-panel{ grid-template-columns: 1fr; }
+      .landmark-grid{grid-template-columns:1fr}
+      .landmark-visual{height: 460px}
+
+      /* keep invisible scrollbar but slimmer */
+      .cscroll{ width: 22px; }
+      .cscroll .thumb{ width: 8px; }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="dust"></canvas>
+
+  <!-- invisible full-height scrollbar -->
+  <div class="cscroll" id="cscroll" aria-hidden="true">
+    <div class="track" id="cTrack">
+      <div class="thumb" id="cThumb"></div>
+    </div>
+  </div>
+
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="#top" class="logo" aria-label="トップへ">
+          <span class="logo-main">KANAGAWA SHOWA PHARMA</span>
+          <span class="logo-sub">神奈川昭和製薬株式会社</span>
+        </a>
+
+        <ul class="nav-links" aria-label="ナビゲーション">
+          <li><a href="#philosophy">理念</a></li>
+          <li><a href="#products">製品</a></li>
+          <li><a href="#location">拠点</a></li>
+        </ul>
+
+        <button class="menu-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile" id="mobilePanel" role="dialog" aria-modal="true" aria-label="モバイルナビゲーション">
+    <a href="#philosophy">理念 <span>Philosophy</span></a>
+    <a href="#products">製品 <span>Products</span></a>
+    <a href="#location">拠点 <span>Location</span></a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="silk s1" aria-hidden="true"></div>
+    <div class="silk s2" aria-hidden="true"></div>
+    <div class="silk s3" aria-hidden="true"></div>
+
+    <div class="hero-inner reveal">
+      <div class="hero-brand">KANAGAWA SHOWA PHARMA</div>
+      <h1 class="hero-h1">伝統と先端科学を融合し<br>健康寿命の未来を創る</h1>
+      <p class="hero-sub">人生120年時代、自分らしく生きるための最適解を。</p>
+
+      <div class="hero-actions">
+        <a class="btn primary" href="#products">製品を見る →</a>
+        <a class="btn ghost" href="#philosophy">理念を見る</a>
+      </div>
+    </div>
+
+    <div class="scroll-wrap" aria-hidden="true">
+      <div class="scrollhint">SCROLL</div>
+
+      <div class="ticker">
+        <div class="row">
+          <span>KANAGAWA SHOWA PHARMA</span><span class="dot"></span>
+          <span>KANAGAWA SHOWA PHARMA</span><span class="dot"></span>
+          <span>KANAGAWA SHOWA PHARMA</span><span class="dot"></span>
+          <span>KANAGAWA SHOWA PHARMA</span><span class="dot"></span>
+          <span>KANAGAWA SHOWA PHARMA</span><span class="dot"></span>
+
+          <span style="margin-left:44px">KANAGAWA SHOWA PHARMA</span><span class="dot"></span>
+          <span>KANAGAWA SHOWA PHARMA</span><span class="dot"></span>
+          <span>KANAGAWA SHOWA PHARMA</span><span class="dot"></span>
+          <span>KANAGAWA SHOWA PHARMA</span><span class="dot"></span>
+          <span>KANAGAWA SHOWA PHARMA</span><span class="dot"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section id="philosophy">
+    <div class="container">
+      <span class="section-label">Philosophy</span>
+      <h2 class="section-title">企業理念</h2>
+
+      <div class="philosophy-grid">
+        <div class="philosophy-text reveal">
+          <h3>「治す」のその先へ<br>若々しさを保つ予防医学の提案</h3>
+          <p>
+            神奈川昭和製薬株式会社は、伝統医学の知恵と先端医療の科学的知見を融合し、
+            単なる治療を超えた「予防医学」の視点から、人々の健康を支えます。
+          </p>
+        </div>
+
+        <div class="philosophy-image reveal">
+          <img src="/mnt/user-data/uploads/a938f1907a5c908c842ea0ab1c0cd2e.jpg" alt="理念イメージ" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- PRODUCTS -->
+  <section id="products" class="products-full-width">
+    <div class="container">
+      <span class="section-label">Our Products</span>
+      <h2 class="section-title">製品紹介</h2>
+      <p style="color:rgba(20,20,20,.58); max-width:760px; margin-top:14px; font-size:1.02rem;">
+        最先端サイエンスに基づく長寿ソリューション。細胞レベル、血管レベルの健康を追求した高純度サプリメントのコレクション。
+      </p>
+
+      <div class="product-filters reveal" aria-label="Product category filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="vascular">Vascular</button>
+        <button class="filter-btn" data-filter="brain">Brain</button>
+        <button class="filter-btn" data-filter="aging">Anti-Aging</button>
+        <button class="filter-btn" data-filter="vitality">Vitality</button>
+      </div>
+
+      <div class="product-strip" id="productGrid">
+        <div class="product-item reveal" data-category="vitality aging" data-product="kigen">
+          <div class="product-image-box">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWVJ9bMdD8CPrhKpBd3Qw2dd7rC07SWr8mvEkMUezQKNkkHSpbHTObSNFQv0vhUzNO6L3cPJJNhaDy4WlUyrNYfkgx6ryLKE2gN6NxN6Fr_5fK7DR77DypoEElqXke2RWZnsW5X4RUDQNhESCizz3feYD5XQ61mlwuj9UUV-6qH7k1qOeASWGBDrCXvw1Swm8H5aom2L4ml7Q3vVPMpf-N7v4BB0iZNjoh89qajhUQ-rA_gqAv43NOF32eKaKER1yVU7ewiIqOD2Oo" alt="帰元" loading="lazy">
+          </div>
+          <div class="product-info-box">
+            <span class="product-cat">Vitality / Anti-Aging</span>
+            <h3 class="product-name">帰元 <small style="font-size:.55em;opacity:.55;letter-spacing:.18em;">Kigen</small></h3>
+            <p class="product-desc">高純度NMN、還元型コエンザイムQ10、PQQを配合。活力維持と細胞レベルのエイジングケアを同時に支えます。</p>
+            <a href="#" class="product-cta js-detail-btn">VIEW DETAILS →</a>
+          </div>
+        </div>
+
+        <div class="product-item reveal" data-category="aging" data-product="bien">
+          <div class="product-image-box">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2v2cOcuI7ApcCWj4p1a6k-UgldW2KhQ577TlfgM_BJXUDEnOUIAowyi8Ni6GqoxRCqnxWPWobJlG4hMv8WiUUGJ6gsy-_lYzT0KdQC3N5nnYlIgdk7OQpz0LwhT2zKKZGiMzU1LV3VwC2SK1TwlnglzglVrws8-96rSNn2KVX2XEwLYbuDpNguI5F-0nJEjaWYHIaEMDatiVWXHBbfmQ8RdrWhB0Tt0EprV6_S0yPiSyZfdlib7Msl6pYY7X5tN4ulVQAS974_EGf" alt="美艶" loading="lazy">
+          </div>
+          <div class="product-info-box">
+            <span class="product-cat">Beauty / Anti-Aging</span>
+            <h3 class="product-name">美艶 <small style="font-size:.55em;opacity:.55;letter-spacing:.18em;">Bien</small></h3>
+            <p class="product-desc">白トマトエキス、桜花エキス、アスコルビン酸を配合。透明感と艶を内側から引き出す美容サポートライン。</p>
+            <a href="#" class="product-cta js-detail-btn">VIEW DETAILS →</a>
+          </div>
+        </div>
+
+        <div class="product-item reveal" data-category="vascular" data-product="kinmyakutsu">
+          <div class="product-image-box">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCluyj1CGNEVuY7SeYB4lUBPN3XYiM70xZA3vj2N_nbvbDmaBaKKXxAepOjHugQc70nlzZNtN-t4uRlX05VpImD_6j1W7RBcP-jXZBpXMLh2Hsams7Lfi5wq8nn6gkUZTrye1lMwvqSKECUVJug4jaIACPXKKNyqk9zxOfyNzAnxb0ScOP6lZzjyCbElb_Vd6hsXaq786UDSGexhZPZkbauk-8m-1Hayg5HuvBDTaaK7xfbaWGeYFUk03Mp4mdRKOtz0xE84Uoq-2bl" alt="金脈通" loading="lazy">
+          </div>
+          <div class="product-info-box">
+            <span class="product-cat">Cardiovascular Care</span>
+            <h3 class="product-name">金脈通 <small style="font-size:.55em;opacity:.55;letter-spacing:.18em;">Kinmyakutsu</small></h3>
+            <p class="product-desc">5-ALA、レスベラトロール、ナットウキナーゼを配合。巡りと循環機能を日常的に支える血管ケア設計です。</p>
+            <a href="#" class="product-cta js-detail-btn">VIEW DETAILS →</a>
+          </div>
+        </div>
+
+        <div class="product-item reveal" data-category="brain" data-product="ekijin">
+          <div class="product-image-box">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIfx-KdQjUuNCCdlZhkkAdKGk5oKifEMub13YxlUjAW1_rh9pv464xNxVNkC7L0CxWJaP_Syau0GycsMRsimVPgJBvlAqcBtF6p9eluezw2fzoZb3GuD1tuC_PbGP6DAY6cD-6lryQkZE50dG8rxe_2BtA3bxfJMlFXzFq-OgM6j8Mc4Juca9_wHeJ8q6xQICLuqrpWg4sFCuNoBe3-6dXRdjbjxN_k0Ao-U8PUeV7UNtLkMeN0bmFgcNDdizrimvF63UymXWQNuZe" alt="益神" loading="lazy">
+          </div>
+          <div class="product-info-box">
+            <span class="product-cat">Cognitive Support</span>
+            <h3 class="product-name">益神 <small style="font-size:.55em;opacity:.55;letter-spacing:.18em;">Ekijin</small></h3>
+            <p class="product-desc">PS、銀杏葉エキス、PQQを最適比率で配合。集中力、思考の明瞭さ、認知パフォーマンスを支援します。</p>
+            <a href="#" class="product-cta js-detail-btn">VIEW DETAILS →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- LOCATION -->
+  <section id="location" class="location">
+    <div class="container">
+      <span class="section-label">Location</span>
+      <h2 class="section-title">日本を代表する立地から<br>世界へ信頼を届ける</h2>
+
+      <div class="landmark-grid">
+        <div class="landmark-visual reveal">
+          <img src="/mnt/user-data/uploads/9eb5876d3768275c8a930bd9eccbd86.jpg" alt="Yokohama Landmark Tower" loading="lazy">
+          <div class="hq-badge">
+            <p>Headquarters</p>
+            <h4>Yokohama Landmark Tower</h4>
+          </div>
+        </div>
+
+        <div class="location-card reveal">
+          <p>
+            神奈川県内でも高い知名度を誇る「横浜ランドマークタワー」に本社を構え、
+            日本の先端性と国際性が集まるこの地から、確かな品質を世界へ届けています。
+          </p>
+          <div class="address">
+            〒220-8173 神奈川県横浜市西区みなとみらい2-2-1<br>
+            横浜ランドマークタワー
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="product-detail-modal" id="productDetailModal" aria-hidden="true">
+    <div class="product-detail-backdrop" id="productDetailBackdrop"></div>
+    <section class="product-detail-panel" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <button class="product-detail-close" id="productDetailClose" type="button" aria-label="close">×</button>
+      <div class="product-detail-image">
+        <img id="detailImage" src="" alt="Product detail image" loading="lazy">
+      </div>
+      <div class="product-detail-meta">
+        <span class="product-cat" id="detailCategory"></span>
+        <h3 id="detailTitle"></h3>
+        <div class="product-detail-price" id="detailPrice"></div>
+        <p class="product-detail-copy" id="detailCopy"></p>
+        <ul class="product-detail-list" id="detailPoints"></ul>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="b">KANAGAWA SHOWA PHARMA</div>
+      <div class="c">© 2026 Kanagawa Showa Pharmaceutical Co., Ltd. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- Header frosting (slow elegant) ----------
+    const header = document.getElementById('header');
+    let ticking = false;
+    const clamp01 = (v) => Math.max(0, Math.min(1, v));
+    const easeOutCubic = (x) => 1 - Math.pow(1 - x, 3);
+
+    function updateHeader(){
+      const y = window.scrollY || 0;
+      const end = 560;
+      let t = clamp01(y / end);
+      t = clamp01((t - 0.12) / (1 - 0.12));
+      t = easeOutCubic(t);
+      header.style.setProperty('--nav', t);
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking){
+        requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    }, { passive:true });
+    updateHeader();
+
+    // ---------- Mobile menu ----------
+    const menuBtn = document.getElementById('menuBtn');
+    const mobilePanel = document.getElementById('mobilePanel');
+
+    const closeMenu = () => {
+      mobilePanel.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded','false');
+      document.removeEventListener('keydown', onKeydown);
+      document.removeEventListener('click', onOutside);
+    };
+    const openMenu = () => {
+      mobilePanel.classList.add('open');
+      menuBtn.setAttribute('aria-expanded','true');
+      document.addEventListener('keydown', onKeydown);
+      setTimeout(() => document.addEventListener('click', onOutside), 0);
+    };
+    const onKeydown = (e) => { if (e.key === 'Escape') closeMenu(); };
+    const onOutside = (e) => {
+      if (e.target === menuBtn || mobilePanel.contains(e.target)) return;
+      closeMenu();
+    };
+    menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      expanded ? closeMenu() : openMenu();
+    });
+    mobilePanel.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeMenu));
+
+    // ---------- Reveal ----------
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduced){
+      const obs = new IntersectionObserver((entries, o) => {
+        for (const e of entries){
+          if (e.isIntersecting){
+            e.target.classList.add('on');
+            o.unobserve(e.target);
+          }
+        }
+      }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('on'));
+    }
+
+    // ---------- Product filters ----------
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('#productGrid .product-item');
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter || 'all';
+        productCards.forEach((card) => {
+          const categories = card.dataset.category || '';
+          const visible = filter === 'all' || categories.includes(filter);
+          card.classList.toggle('is-hidden', !visible);
+        });
+      });
+    });
+
+    // ---------- Product detail modal ----------
+    const detailData = {
+      kigen: {
+        category: 'Vitality / Anti-Aging',
+        title: '帰元 (Kigen)',
+        price: '参考価格: ¥42,000',
+        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDWVJ9bMdD8CPrhKpBd3Qw2dd7rC07SWr8mvEkMUezQKNkkHSpbHTObSNFQv0vhUzNO6L3cPJJNhaDy4WlUyrNYfkgx6ryLKE2gN6NxN6Fr_5fK7DR77DypoEElqXke2RWZnsW5X4RUDQNhESCizz3feYD5XQ61mlwuj9UUV-6qH7k1qOeASWGBDrCXvw1Swm8H5aom2L4ml7Q3vVPMpf-N7v4BB0iZNjoh89qajhUQ-rA_gqAv43NOF32eKaKER1yVU7ewiIqOD2Oo',
+        copy: 'NMN、還元型コエンザイムQ10、PQQを高配合。細胞エネルギー代謝と日々の活力維持を支えるプレミアム処方です。',
+        points: ['NMN 30,000mg配合', '還元型CoQ10 + PQQ', '活力維持と年齢対策を同時サポート']
+      },
+      bien: {
+        category: 'Beauty / Anti-Aging',
+        title: '美艶 (Bien)',
+        price: '参考価格: ¥38,000',
+        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC2v2cOcuI7ApcCWj4p1a6k-UgldW2KhQ577TlfgM_BJXUDEnOUIAowyi8Ni6GqoxRCqnxWPWobJlG4hMv8WiUUGJ6gsy-_lYzT0KdQC3N5nnYlIgdk7OQpz0LwhT2zKKZGiMzU1LV3VwC2SK1TwlnglzglVrws8-96rSNn2KVX2XEwLYbuDpNguI5F-0nJEjaWYHIaEMDatiVWXHBbfmQ8RdrWhB0Tt0EprV6_S0yPiSyZfdlib7Msl6pYY7X5tN4ulVQAS974_EGf',
+        copy: '白トマトエキス、桜花エキス、ビタミンCを組み合わせ、透明感とハリを内側から整える美容設計です。',
+        points: ['白トマトエキス配合', '艶と透明感をサポート', '日常継続を想定した配合バランス']
+      },
+      kinmyakutsu: {
+        category: 'Cardiovascular Care',
+        title: '金脈通 (Kinmyakutsu)',
+        price: '参考価格: ¥32,000',
+        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCluyj1CGNEVuY7SeYB4lUBPN3XYiM70xZA3vj2N_nbvbDmaBaKKXxAepOjHugQc70nlzZNtN-t4uRlX05VpImD_6j1W7RBcP-jXZBpXMLh2Hsams7Lfi5wq8nn6gkUZTrye1lMwvqSKECUVJug4jaIACPXKKNyqk9zxOfyNzAnxb0ScOP6lZzjyCbElb_Vd6hsXaq786UDSGexhZPZkbauk-8m-1Hayg5HuvBDTaaK7xfbaWGeYFUk03Mp4mdRKOtz0xE84Uoq-2bl',
+        copy: '5-ALA、レスベラトロール、ナットウキナーゼを中心に、めぐりと循環の質を高めるために設計しました。',
+        points: ['循環ケアに特化した処方', '血流コンディションの維持を支援', '日常利用しやすい設計']
+      },
+      ekijin: {
+        category: 'Cognitive Support',
+        title: '益神 (Ekijin)',
+        price: '参考価格: ¥35,000',
+        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAIfx-KdQjUuNCCdlZhkkAdKGk5oKifEMub13YxlUjAW1_rh9pv464xNxVNkC7L0CxWJaP_Syau0GycsMRsimVPgJBvlAqcBtF6p9eluezw2fzoZb3GuD1tuC_PbGP6DAY6cD-6lryQkZE50dG8rxe_2BtA3bxfJMlFXzFq-OgM6j8Mc4Juca9_wHeJ8q6xQICLuqrpWg4sFCuNoBe3-6dXRdjbjxN_k0Ao-U8PUeV7UNtLkMeN0bmFgcNDdizrimvF63UymXWQNuZe',
+        copy: 'PS、銀杏葉エキス、PQQを最適比率で配合。集中力・思考の明瞭さ・認知機能の維持を多面的に支えます。',
+        points: ['PS + 銀杏葉エキス + PQQ', '思考と集中のパフォーマンス支援', '長期継続を前提にした配合']
+      }
+    };
+
+    const productDetailModal = document.getElementById('productDetailModal');
+    const productDetailBackdrop = document.getElementById('productDetailBackdrop');
+    const productDetailClose = document.getElementById('productDetailClose');
+    const detailCategory = document.getElementById('detailCategory');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailPrice = document.getElementById('detailPrice');
+    const detailImage = document.getElementById('detailImage');
+    const detailCopy = document.getElementById('detailCopy');
+    const detailPoints = document.getElementById('detailPoints');
+
+    function closeProductDetail(){
+      productDetailModal.classList.remove('open');
+      productDetailModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function openProductDetail(productKey){
+      const data = detailData[productKey];
+      if (!data) return;
+      detailCategory.textContent = data.category;
+      detailTitle.textContent = data.title;
+      detailPrice.textContent = data.price;
+      detailImage.src = data.image;
+      detailImage.alt = data.title;
+      detailCopy.textContent = data.copy;
+      detailPoints.innerHTML = data.points.map((point) => `<li>${point}</li>`).join('');
+      productDetailModal.classList.add('open');
+      productDetailModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.querySelectorAll('.js-detail-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = btn.closest('.product-item');
+        if (!card) return;
+        openProductDetail(card.dataset.product);
+      });
+    });
+    productDetailBackdrop.addEventListener('click', closeProductDetail);
+    productDetailClose.addEventListener('click', closeProductDetail);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && productDetailModal.classList.contains('open')) {
+        closeProductDetail();
+      }
+    });
+
+    // ---------- Micro particles (warm light dust) ----------
+    const canvas = document.getElementById('dust');
+    const ctx = canvas.getContext('2d', { alpha:true });
+
+    const DPR = Math.min(2, window.devicePixelRatio || 1);
+    let W=0, H=0;
+    const particles = [];
+    const COUNT = 64;
+    const SPEED = 0.12;
+
+    function resizeCanvas(){
+      W = Math.floor(window.innerWidth * DPR);
+      H = Math.floor(window.innerHeight * DPR);
+      canvas.width = W; canvas.height = H;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+
+      particles.length = 0;
+      for (let i=0;i<COUNT;i++){
+        particles.push({
+          x: Math.random()*W,
+          y: Math.random()*H,
+          r: (Math.random()*1.3 + 0.6) * DPR,
+          vx: (Math.random()*2-1) * SPEED * DPR,
+          vy: (Math.random()*2-1) * SPEED * DPR,
+          a: Math.random()*0.14 + 0.04,
+          tw: Math.random()*0.9 + 0.4,
+          ph: Math.random()*Math.PI*2
+        });
+      }
+    }
+
+    function tick(t){
+      ctx.clearRect(0,0,W,H);
+
+      const g1 = ctx.createRadialGradient(W*0.25, H*0.15, 0, W*0.25, H*0.15, Math.max(W,H)*0.8);
+      g1.addColorStop(0, `rgba(205,187,147,${0.040})`);
+      g1.addColorStop(1, `rgba(255,255,255,0)`);
+      ctx.fillStyle = g1;
+      ctx.fillRect(0,0,W,H);
+
+      for (const p of particles){
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < -20) p.x = W+20;
+        if (p.x > W+20) p.x = -20;
+        if (p.y < -20) p.y = H+20;
+        if (p.y > H+20) p.y = -20;
+
+        const tw = 0.5 + 0.5*Math.sin((t*0.001*p.tw) + p.ph);
+        const alpha = p.a * (0.55 + 0.45*tw);
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r*(0.85+0.35*tw), 0, Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(tick);
+    }
+
+    if (!reduced){
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas, { passive:true });
+      requestAnimationFrame(tick);
+    } else {
+      canvas.style.display = 'none';
+    }
+
+    // ---------- Invisible full-height scrollbar (auto show on scroll) ----------
+    const root = document.documentElement;
+    const cTrack = document.getElementById('cTrack');
+    const cThumb = document.getElementById('cThumb');
+
+    function maxScroll(){
+      return Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    }
+
+    function setThumb(){
+      const ms = maxScroll();
+      const y = window.scrollY || 0;
+      const ratio = y / ms;
+
+      const trackH = cTrack.clientHeight;
+      const minH = 56;
+      const maxH = 92;
+      const viewportRatio = window.innerHeight / document.documentElement.scrollHeight;
+      const h = Math.max(minH, Math.min(maxH, Math.floor(trackH * viewportRatio)));
+      cThumb.style.height = h + 'px';
+
+      const top = Math.floor((trackH - h) * ratio);
+      cThumb.style.top = top + 'px';
+    }
+
+    // show scrollbar subtly when scrolling, then fade
+    let hideTimer = null;
+    function showBar(){
+      root.style.setProperty('--sbar', 1);
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => {
+        root.style.setProperty('--sbar', 0);
+      }, 900);
+    }
+
+    window.addEventListener('scroll', () => {
+      requestAnimationFrame(setThumb);
+      showBar();
+    }, { passive:true });
+
+    window.addEventListener('resize', () => requestAnimationFrame(setThumb), { passive:true });
+    setThumb();
+
+    // click on track to jump
+    cTrack.addEventListener('mousedown', (e) => {
+      if (e.target === cThumb) return;
+      const rect = cTrack.getBoundingClientRect();
+      const y = e.clientY - rect.top;
+      const thumbH = cThumb.offsetHeight;
+      const trackH = cTrack.clientHeight;
+      const ratio = clamp01((y - thumbH/2) / (trackH - thumbH));
+      window.scrollTo({ top: ratio * maxScroll(), behavior: 'smooth' });
+      showBar();
+    });
+
+    // drag thumb
+    let dragging = false;
+    let dragOffset = 0;
+
+    cThumb.addEventListener('mousedown', (e) => {
+      dragging = true;
+      const rect = cThumb.getBoundingClientRect();
+      dragOffset = e.clientY - rect.top;
+      document.body.style.userSelect = 'none';
+      root.style.setProperty('--sbar', 1);
+      clearTimeout(hideTimer);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      const rect = cTrack.getBoundingClientRect();
+      const trackH = cTrack.clientHeight;
+      const thumbH = cThumb.offsetHeight;
+
+      const y = (e.clientY - rect.top) - dragOffset;
+      const ratio = clamp01(y / (trackH - thumbH));
+      window.scrollTo({ top: ratio * maxScroll(), behavior: 'auto' });
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      document.body.style.userSelect = '';
+      showBar();
+    });
+  </script>
+</body>
+</html>
+
